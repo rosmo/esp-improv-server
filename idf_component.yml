@@ -1,0 +1,14 @@
+version: 0.1.0
+description: Improv implementation for ESP-IDF
+url: https://github.com/rosmo/esp-improv-server
+repository: https://github.com/rosmo/esp-improv-server.git
+issues: https://github.com/rosmo/esp-improv-server/issues
+maintainers:
+  - "Taneli Leppä <rosmo@rosmo.fi>"
+tags:
+  - bluetooth
+  - ble
+  - nimble
+dependencies:
+  idf: ">=5.5"
+  improv/improv: ^1.2.5
