@@ -171,6 +171,7 @@ void ImprovServer::onSync()
 
     advertise();
 
+    ESP_LOGI(TAG, "On sync completed, signaling advertise task to start.");
     // Notify the task that advertising has started
     xTaskNotifyGive(advertiseTaskHandle);
 }
