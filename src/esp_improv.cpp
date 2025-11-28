@@ -168,9 +168,6 @@ void ImprovServer::onSync()
     uint8_t addr_val[6] = {0};
     rc = ble_hs_id_copy_addr(addrType, addr_val, NULL);
     ESP_LOGI(TAG, "Device address (type %d): %02x:%02x:%02x:%02x:%02x:%02x", addrType, addr_val[5], addr_val[4], addr_val[3], addr_val[2], addr_val[1], addr_val[0]);
-
-    advertise();
-
     ESP_LOGI(TAG, "On sync completed, signaling advertise task to start.");
     // Notify the task that advertising has started
     xTaskNotifyGive(advertiseTaskHandle);
