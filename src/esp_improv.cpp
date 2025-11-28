@@ -225,9 +225,11 @@ void ImprovServer::advertiseTask(void *param)
             state = improv::STATE_AUTHORIZED;
         }
         if (advertiseOn && !advertising) {
+            ESP_LOGI(TAG, "Starting advertising.");
             advertise();
             advertising = true;
         } else if (advertiseOn && advertising) {
+            vTaskDelay(pdMS_TO_TICKS(ADVERTISE_NAME_EVERY_MSECS));
             ESP_LOGD(TAG, "BLE Advertise Task: starting to advertise name.");
             advertiseName = true;
             rc = ble_gap_adv_stop();
@@ -246,8 +248,9 @@ void ImprovServer::advertiseTask(void *param)
             advertiseName = false;
             advertise();
             advertising = true;
+            continue;
         }
-        vTaskDelay(pdMS_TO_TICKS(ADVERTISE_NAME_EVERY_MSECS));
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
 
