@@ -142,8 +142,8 @@ esp_err_t ImprovServer::advertise()
     memset(&adv_params, 0, sizeof(adv_params));
     adv_params.conn_mode = BLE_GAP_CONN_MODE_UND;
     adv_params.disc_mode = BLE_GAP_DISC_MODE_GEN;
-    adv_params.itvl_min = BLE_GAP_ADV_ITVL_MS(500);
-    adv_params.itvl_max = BLE_GAP_ADV_ITVL_MS(600);
+    //adv_params.itvl_min = BLE_GAP_ADV_ITVL_MS(500);
+    //adv_params.itvl_max = BLE_GAP_ADV_ITVL_MS(600);
     rc = ble_gap_adv_start(BLE_OWN_ADDR_PUBLIC, NULL, BLE_HS_FOREVER,
                            &adv_params, ImprovServer::gapEvent, NULL);
     if (rc != 0) {
@@ -283,8 +283,8 @@ esp_err_t ImprovServer::Initialize(wifi_provision_fn onProvisionCallback, void *
         return ESP_FAIL;
     }
     
-    xTaskCreate(ImprovServer::advertiseTask, "ble_advertise_task", 4096, (void *)this, 5, &advertiseTaskHandle);
-    xTaskCreate(ImprovServer::hostTask, "ble_host_task", 4096, (void *)this, 5, NULL);
+    xTaskCreate(ImprovServer::advertiseTask, "ble_advertise_task", 4096, (void *)this, 1, &advertiseTaskHandle);
+    xTaskCreate(ImprovServer::hostTask, "ble_host_task", 4096, (void *)this, 1, NULL);
 
     return ESP_OK;
 }
